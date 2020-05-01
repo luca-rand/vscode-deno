@@ -41,8 +41,11 @@ class Deno {
       );
     }
   }
-  public async getTypes(): Promise<Buffer> {
-    const { stdout } = await execa(this.executablePath as string, ["types"]);
+  public async getTypes(unstable: boolean): Promise<Buffer> {
+    const { stdout } = await execa(this.executablePath as string, [
+      "types",
+      ...(unstable ? ["--unstable"] : []),
+    ]);
 
     return Buffer.from(stdout, "utf8");
   }
