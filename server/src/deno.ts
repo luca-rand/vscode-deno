@@ -44,7 +44,7 @@ class Deno {
   public async getTypes(unstable: boolean): Promise<Buffer> {
     const { stdout } = await execa(this.executablePath as string, [
       "types",
-      ...(unstable && this.version && semver.gte(this.version.deno, "0.42.0")
+      ...(unstable && this.version && semver.gte(this.version.deno, "0.43.0")
         ? ["--unstable"]
         : []),
     ]);
