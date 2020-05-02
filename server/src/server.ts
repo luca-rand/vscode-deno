@@ -111,8 +111,7 @@ async function ensureDenoDts(unstable: boolean) {
 connection.onInitialized(async () => {
   try {
     await deno.init();
-    ensureDenoDts(false);
-    ensureDenoDts(true);
+    await Promise.all([ensureDenoDts(false), ensureDenoDts(true)]);
   } catch (err) {
     connection.sendNotification(Notification.error, err.message);
     return;
